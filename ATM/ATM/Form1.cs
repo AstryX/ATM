@@ -17,6 +17,7 @@ namespace ATM
         private int state;
         private int acc;
         private string inputLabel;
+        private int accountAmount;
 		public Form1()
 		{
 			InitializeComponent();
@@ -25,6 +26,7 @@ namespace ATM
             ac[2] = new Account(3000, 3333, 333333);
             state = 0;
             inputLabel = "";
+            accountAmount = 3;
 		}
     
     private void np1_Click(object sender, EventArgs e)
@@ -122,87 +124,27 @@ namespace ATM
         switch (state)
         {
             case 0:
-                if (inputLabel == "111111")
+                string tempacc;
+                for (int i = 0; i < accountAmount; i++)
                 {
+                    tempacc = ac[i].getAccountNum().ToString();
+                    if(inputLabel == tempacc)
                     state = 1;
-                    acc = 1;
+                    acc = i;
                     clearScreen();
-                }
-                else if (inputLabel == "222222")
-                {
-                   
-                        state = 1;
-                        acc = 2;
-                        clearScreen();
-                    
-                }
-                else if (inputLabel == "333333")
-                {
-                    state = 1;
-                    acc = 3;
-                    clearScreen();
-                }
-                else 
-                {
-                    inputLabel = "Wrong Account!";
-                    textBox1.Clear();
-                    textBox1.AppendText(inputLabel);
                 }
                 break;
             case 1:
-                if (acc == 1)
-                {
-                    if (inputLabel == "1111")
-                    {
-                        state = 2;
-                        inputLabel = String.Empty;
-                        textBox1.Clear();
-                        textBox1.AppendText(inputLabel);
-                    }
-                    else
-                    {
-                        inputLabel = "Wrong password!";
-                        textBox1.Clear();
-                        textBox1.AppendText(inputLabel);
-                        state = 0;
-                    }
+                if(ac[acc].checkPin(Int32.Parse(inputLabel))==true){
+                    state = 2;
+                    clearScreen();
                 }
-                else if (acc == 2) 
-                {
-
-                        if (inputLabel == "2222") 
-                        {
-                            state = 2;
-                            inputLabel = String.Empty;
-                            textBox1.Clear();
-                            textBox1.AppendText(inputLabel);
-                            state = 0;
-                        }
-                        else
-                        {
-                            inputLabel = "Wrong password!";
-                            textBox1.Clear();
-                            textBox1.AppendText(inputLabel);
-                            state = 0;
-                        }
-                    
-                }
-                else if (acc == 3)
-                {
-                    if (inputLabel == "3333")
-                    {
-                        state = 2;
-                        inputLabel = String.Empty;
-                        textBox1.Clear();
-                        textBox1.AppendText(inputLabel);
-                    }
-                    else
-                    {
-                        inputLabel = "Wrong password!";
-                        textBox1.Clear();
-                        textBox1.AppendText(inputLabel);
-                    }
-                }
+                else{
+                    inputLabel = "Wrong password!";
+                    textBox1.Clear();
+                    textBox1.AppendText(inputLabel);
+                    state = 0;
+                }           
                 break;
             default:
                 break;
