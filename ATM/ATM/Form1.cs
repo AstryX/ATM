@@ -135,6 +135,8 @@ namespace ATM
                         state = 1;
                         acc = i;
                         clearScreen();
+                        //label1.TextAlign.
+                        label1.Text = "INSERT PIN:";
                         break;
                     }
                 }
@@ -143,6 +145,8 @@ namespace ATM
                 if(ac[acc].checkPin(Int32.Parse(inputLabel))==true){
                     state = 2;
                     clearScreen();
+                    label1.Visible = false;
+                    textBox1.Visible = false;
                 }
                 else{
                     inputLabel = "Wrong password!";
@@ -162,6 +166,7 @@ namespace ATM
         textBox1.Clear();
         textBox1.AppendText(inputLabel);
         state = 0;
+        label1.Text = "ACCOUNT NUMBER:";
     }
 
     private void correctionBtn_Click(object sender, EventArgs e)
