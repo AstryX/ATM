@@ -17,3 +17,4 @@ C:\Users\rdereskevicius\Desktop\ATM\ATM\ATM\obj\Debug\ATM.csprojResolveAssemblyR
 C:\Users\rdereskevicius\Desktop\ATM\ATM\ATM\obj\Debug\ATM.Form1.resources
 C:\Users\rdereskevicius\Desktop\ATM\ATM\ATM\obj\Debug\ATM.Properties.Resources.resources
 C:\Users\rdereskevicius\Desktop\ATM\ATM\ATM\obj\Debug\ATM.csproj.GenerateResource.Cache
+C:\Users\rdereskevicius\Desktop\ATM\ATM\ATM\obj\Debug\ATM.MainMenu.resources

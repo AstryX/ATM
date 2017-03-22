@@ -25,6 +25,7 @@ namespace ATM
             ac[1] = new Account(750, 2222, 222222);
             ac[2] = new Account(3000, 3333, 333333);
             state = 0;
+            acc = -1;
             inputLabel = "";
             accountAmount = 3;
 		}
@@ -33,6 +34,7 @@ namespace ATM
     {
         inputLabel = inputLabel + "1";
         textBox1.Clear();
+
         textBox1.AppendText(inputLabel);
     }
 
@@ -128,10 +130,13 @@ namespace ATM
                 for (int i = 0; i < accountAmount; i++)
                 {
                     tempacc = ac[i].getAccountNum().ToString();
-                    if(inputLabel == tempacc)
-                    state = 1;
-                    acc = i;
-                    clearScreen();
+                    if (inputLabel == tempacc)
+                    {
+                        state = 1;
+                        acc = i;
+                        clearScreen();
+                        break;
+                    }
                 }
                 break;
             case 1:
@@ -261,7 +266,7 @@ namespace ATM
      *      This is out main ATM class that preforms the actions outlined in the assigment hand out
      *      
      *      the constutor contains the main funcitonality.
-     *
+     **/
     class ATM
     {
         //local referance to the array of accounts
@@ -312,7 +317,7 @@ namespace ATM
          *    if a match is found a referance to the match is returned
          *    if the for loop completest with no match we return null
          * 
-         *
+         */
         private Account findAccount()
         {
             Console.WriteLine("enter your account number..");
@@ -335,7 +340,7 @@ namespace ATM
          *  
          * returns the string entered converted to an int
          * 
-         *
+         */
         private int promptForPin()
         {
             Console.WriteLine("enter pin:");
@@ -351,7 +356,7 @@ namespace ATM
          *  promt for input
          *  and defer to appropriate method based on input
          *  
-         *
+         */
         private void dispOptions()
         {
             Console.WriteLine("1> take out cash");
@@ -386,7 +391,7 @@ namespace ATM
          * 
          * based on input attempt to withraw the corosponding amount of money
          * 
-         *
+         */
         private void dispWithdraw()
         {
             Console.WriteLine("1> 10");
@@ -451,7 +456,7 @@ namespace ATM
         /*
          *  display balance of activeAccount and await keypress
          *  
-         *
+         **/
         private void dispBalance(){
             if (this.activeAccount != null)
             {
@@ -461,7 +466,7 @@ namespace ATM
             }
         }
         
-    }*/
+    }
 }
 
 
