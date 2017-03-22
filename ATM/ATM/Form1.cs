@@ -15,6 +15,7 @@ namespace ATM
 	{
         private Account[] ac = new Account[3];
         private int state;
+        private int acc;
         private string inputLabel;
 		public Form1()
 		{
@@ -25,13 +26,7 @@ namespace ATM
             state = 0;
             inputLabel = "";
 		}
-	private void cancelBtn_Click(object sender, EventArgs e)
-	{
-		inputLabel = String.Empty;
-		textBox1.Clear();
-		textBox1.AppendText(inputLabel);	
-	}
-
+    
     private void np1_Click(object sender, EventArgs e)
     {
         inputLabel = inputLabel + "1";
@@ -115,17 +110,121 @@ namespace ATM
         }
     }
 
+    private void clearScreen()//method used to clear the screen
+    {
+        inputLabel = String.Empty;
+        textBox1.Clear();
+        textBox1.AppendText(inputLabel);
+    }
+
     private void acceptBtn_Click(object sender, EventArgs e)
     {
         switch (state)
         {
             case 0:
+                if (inputLabel == "111111")
+                {
+                    state = 1;
+                    acc = 1;
+                    clearScreen();
+                }
+                else if (inputLabel == "222222")
+                {
+                   
+                        state = 1;
+                        acc = 2;
+                        clearScreen();
+                    
+                }
+                else if (inputLabel == "333333")
+                {
+                    state = 1;
+                    acc = 3;
+                    clearScreen();
+                }
+                else 
+                {
+                    inputLabel = "Wrong Account!";
+                    textBox1.Clear();
+                    textBox1.AppendText(inputLabel);
+                }
                 break;
             case 1:
+                if (acc == 1)
+                {
+                    if (inputLabel == "1111")
+                    {
+                        state = 2;
+                        inputLabel = String.Empty;
+                        textBox1.Clear();
+                        textBox1.AppendText(inputLabel);
+                    }
+                    else
+                    {
+                        inputLabel = "Wrong password!";
+                        textBox1.Clear();
+                        textBox1.AppendText(inputLabel);
+                        state = 0;
+                    }
+                }
+                else if (acc == 2) 
+                {
+
+                        if (inputLabel == "2222") 
+                        {
+                            state = 2;
+                            inputLabel = String.Empty;
+                            textBox1.Clear();
+                            textBox1.AppendText(inputLabel);
+                            state = 0;
+                        }
+                        else
+                        {
+                            inputLabel = "Wrong password!";
+                            textBox1.Clear();
+                            textBox1.AppendText(inputLabel);
+                            state = 0;
+                        }
+                    
+                }
+                else if (acc == 3)
+                {
+                    if (inputLabel == "3333")
+                    {
+                        state = 2;
+                        inputLabel = String.Empty;
+                        textBox1.Clear();
+                        textBox1.AppendText(inputLabel);
+                    }
+                    else
+                    {
+                        inputLabel = "Wrong password!";
+                        textBox1.Clear();
+                        textBox1.AppendText(inputLabel);
+                    }
+                }
                 break;
             default:
                 break;
         }
+    }
+        
+    private void cancelBtn_Click(object sender, EventArgs e)
+    {
+        inputLabel = String.Empty;
+        textBox1.Clear();
+        textBox1.AppendText(inputLabel);
+        state = 0;
+    }
+
+    private void correctionBtn_Click(object sender, EventArgs e)
+    {
+        if (inputLabel.Length > 0)
+        {
+            inputLabel = inputLabel.Remove(inputLabel.Length - 1);
+        }
+        textBox1.Clear();
+        textBox1.AppendText(inputLabel);
     }
 	}
     /*

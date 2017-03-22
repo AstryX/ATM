@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btn3 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
             this.btn7 = new System.Windows.Forms.Button();
@@ -50,20 +49,12 @@
             this.np2 = new System.Windows.Forms.Button();
             this.np1 = new System.Windows.Forms.Button();
             this.btn8 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(226, 10);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(310, 179);
-            this.textBox1.TabIndex = 0;
             // 
             // btn3
             // 
-            this.btn3.Location = new System.Drawing.Point(176, 119);
+            this.btn3.Location = new System.Drawing.Point(11, 119);
             this.btn3.Margin = new System.Windows.Forms.Padding(2);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(46, 32);
@@ -73,7 +64,7 @@
             // 
             // btn5
             // 
-            this.btn5.Location = new System.Drawing.Point(176, 83);
+            this.btn5.Location = new System.Drawing.Point(11, 82);
             this.btn5.Margin = new System.Windows.Forms.Padding(2);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(46, 32);
@@ -83,7 +74,7 @@
             // 
             // btn7
             // 
-            this.btn7.Location = new System.Drawing.Point(176, 46);
+            this.btn7.Location = new System.Drawing.Point(11, 46);
             this.btn7.Margin = new System.Windows.Forms.Padding(2);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(46, 32);
@@ -93,7 +84,7 @@
             // 
             // btn2
             // 
-            this.btn2.Location = new System.Drawing.Point(539, 156);
+            this.btn2.Location = new System.Drawing.Point(375, 154);
             this.btn2.Margin = new System.Windows.Forms.Padding(2);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(46, 32);
@@ -103,7 +94,7 @@
             // 
             // btn4
             // 
-            this.btn4.Location = new System.Drawing.Point(539, 119);
+            this.btn4.Location = new System.Drawing.Point(375, 118);
             this.btn4.Margin = new System.Windows.Forms.Padding(2);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(46, 32);
@@ -113,7 +104,7 @@
             // 
             // btn6
             // 
-            this.btn6.Location = new System.Drawing.Point(539, 83);
+            this.btn6.Location = new System.Drawing.Point(375, 82);
             this.btn6.Margin = new System.Windows.Forms.Padding(2);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(46, 32);
@@ -123,7 +114,7 @@
             // 
             // btn1
             // 
-            this.btn1.Location = new System.Drawing.Point(176, 156);
+            this.btn1.Location = new System.Drawing.Point(11, 157);
             this.btn1.Margin = new System.Windows.Forms.Padding(2);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(46, 32);
@@ -135,7 +126,7 @@
             // np0
             // 
             this.np0.Image = global::ATM.Properties.Resources._0;
-            this.np0.Location = new System.Drawing.Point(59, 414);
+            this.np0.Location = new System.Drawing.Point(111, 370);
             this.np0.Margin = new System.Windows.Forms.Padding(2);
             this.np0.Name = "np0";
             this.np0.Size = new System.Drawing.Size(46, 32);
@@ -146,7 +137,7 @@
             // acceptBtn
             // 
             this.acceptBtn.Image = global::ATM.Properties.Resources.accept;
-            this.acceptBtn.Location = new System.Drawing.Point(160, 377);
+            this.acceptBtn.Location = new System.Drawing.Point(211, 334);
             this.acceptBtn.Margin = new System.Windows.Forms.Padding(2);
             this.acceptBtn.Name = "acceptBtn";
             this.acceptBtn.Size = new System.Drawing.Size(80, 32);
@@ -157,27 +148,29 @@
             // correctionBtn
             // 
             this.correctionBtn.Image = global::ATM.Properties.Resources.correction;
-            this.correctionBtn.Location = new System.Drawing.Point(160, 340);
+            this.correctionBtn.Location = new System.Drawing.Point(211, 297);
             this.correctionBtn.Margin = new System.Windows.Forms.Padding(2);
             this.correctionBtn.Name = "correctionBtn";
             this.correctionBtn.Size = new System.Drawing.Size(80, 32);
             this.correctionBtn.TabIndex = 20;
             this.correctionBtn.UseVisualStyleBackColor = true;
+            this.correctionBtn.Click += new System.EventHandler(this.correctionBtn_Click);
             // 
             // cancelBtn
             // 
             this.cancelBtn.Image = global::ATM.Properties.Resources.cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(160, 304);
+            this.cancelBtn.Location = new System.Drawing.Point(211, 261);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(2);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(80, 32);
             this.cancelBtn.TabIndex = 19;
             this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // np9
             // 
             this.np9.Image = global::ATM.Properties.Resources._9;
-            this.np9.Location = new System.Drawing.Point(110, 377);
+            this.np9.Location = new System.Drawing.Point(161, 334);
             this.np9.Margin = new System.Windows.Forms.Padding(2);
             this.np9.Name = "np9";
             this.np9.Size = new System.Drawing.Size(46, 32);
@@ -188,7 +181,7 @@
             // np6
             // 
             this.np6.Image = global::ATM.Properties.Resources._6;
-            this.np6.Location = new System.Drawing.Point(110, 340);
+            this.np6.Location = new System.Drawing.Point(161, 297);
             this.np6.Margin = new System.Windows.Forms.Padding(2);
             this.np6.Name = "np6";
             this.np6.Size = new System.Drawing.Size(46, 32);
@@ -199,7 +192,7 @@
             // np8
             // 
             this.np8.Image = global::ATM.Properties.Resources._8;
-            this.np8.Location = new System.Drawing.Point(59, 377);
+            this.np8.Location = new System.Drawing.Point(111, 334);
             this.np8.Margin = new System.Windows.Forms.Padding(2);
             this.np8.Name = "np8";
             this.np8.Size = new System.Drawing.Size(46, 32);
@@ -210,7 +203,7 @@
             // np5
             // 
             this.np5.Image = global::ATM.Properties.Resources._5;
-            this.np5.Location = new System.Drawing.Point(59, 340);
+            this.np5.Location = new System.Drawing.Point(111, 297);
             this.np5.Margin = new System.Windows.Forms.Padding(2);
             this.np5.Name = "np5";
             this.np5.Size = new System.Drawing.Size(46, 32);
@@ -221,7 +214,7 @@
             // np7
             // 
             this.np7.Image = global::ATM.Properties.Resources._7;
-            this.np7.Location = new System.Drawing.Point(9, 377);
+            this.np7.Location = new System.Drawing.Point(61, 333);
             this.np7.Margin = new System.Windows.Forms.Padding(2);
             this.np7.Name = "np7";
             this.np7.Size = new System.Drawing.Size(46, 32);
@@ -232,7 +225,7 @@
             // np4
             // 
             this.np4.Image = global::ATM.Properties.Resources._4;
-            this.np4.Location = new System.Drawing.Point(9, 340);
+            this.np4.Location = new System.Drawing.Point(61, 297);
             this.np4.Margin = new System.Windows.Forms.Padding(2);
             this.np4.Name = "np4";
             this.np4.Size = new System.Drawing.Size(46, 32);
@@ -243,7 +236,7 @@
             // np3
             // 
             this.np3.Image = global::ATM.Properties.Resources._3;
-            this.np3.Location = new System.Drawing.Point(110, 304);
+            this.np3.Location = new System.Drawing.Point(161, 261);
             this.np3.Margin = new System.Windows.Forms.Padding(2);
             this.np3.Name = "np3";
             this.np3.Size = new System.Drawing.Size(46, 32);
@@ -254,7 +247,7 @@
             // np2
             // 
             this.np2.Image = global::ATM.Properties.Resources._2;
-            this.np2.Location = new System.Drawing.Point(59, 304);
+            this.np2.Location = new System.Drawing.Point(111, 261);
             this.np2.Margin = new System.Windows.Forms.Padding(2);
             this.np2.Name = "np2";
             this.np2.Size = new System.Drawing.Size(46, 32);
@@ -265,7 +258,7 @@
             // np1
             // 
             this.np1.Image = global::ATM.Properties.Resources._1;
-            this.np1.Location = new System.Drawing.Point(9, 304);
+            this.np1.Location = new System.Drawing.Point(61, 261);
             this.np1.Margin = new System.Windows.Forms.Padding(2);
             this.np1.Name = "np1";
             this.np1.Size = new System.Drawing.Size(46, 32);
@@ -275,7 +268,7 @@
             // 
             // btn8
             // 
-            this.btn8.Location = new System.Drawing.Point(539, 46);
+            this.btn8.Location = new System.Drawing.Point(375, 46);
             this.btn8.Margin = new System.Windows.Forms.Padding(2);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(46, 32);
@@ -283,12 +276,21 @@
             this.btn8.Text = "<";
             this.btn8.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(61, 11);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(310, 179);
+            this.textBox1.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(746, 449);
+            this.ClientSize = new System.Drawing.Size(494, 408);
             this.Controls.Add(this.np0);
             this.Controls.Add(this.acceptBtn);
             this.Controls.Add(this.correctionBtn);
@@ -321,8 +323,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Button btn3;
+        private System.Windows.Forms.Button btn3;
 		private System.Windows.Forms.Button btn5;
 		private System.Windows.Forms.Button btn7;
 		private System.Windows.Forms.Button btn2;
@@ -342,7 +343,8 @@
 		private System.Windows.Forms.Button correctionBtn;
 		private System.Windows.Forms.Button acceptBtn;
 		private System.Windows.Forms.Button btn1;
-		private System.Windows.Forms.Button np0;
+        private System.Windows.Forms.Button np0;
+        private System.Windows.Forms.TextBox textBox1;
 	}
 }
 
