@@ -150,6 +150,7 @@ namespace ATM
                         clearScreen();
                         label1.Visible = false;
                         textBox1.Visible = false;
+                        panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("atmMenu.png");
                     }
                     else
                     {
@@ -197,6 +198,11 @@ namespace ATM
                 default:
                     break;
             }
+        }
+
+        private void ATM_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
