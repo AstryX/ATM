@@ -18,6 +18,7 @@ namespace ATM
         private int acc;
         private string inputLabel;
         private int accountAmount;
+        public int takenamount;
         public ATM(Account[] acMain)
         {
             ac = acMain;
@@ -26,6 +27,7 @@ namespace ATM
             acc = -1;
             inputLabel = "";
             accountAmount = 3;
+            takenamount = 0;
         }
 
         private void np1_Click(object sender, EventArgs e)
@@ -99,22 +101,7 @@ namespace ATM
             textBox1.AppendText(inputLabel);
         }
 
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            switch (state)
-            {
-                case 2:
-                    state = 3;
 
-                    break;
-                case 3:
-                    ac[acc].decrementBalance(20);
-                    state = 2;
-                    break;
-                default:
-                    break;
-            }
-        }
 
         private void clearScreen()//method used to clear the screen
         {
@@ -146,11 +133,10 @@ namespace ATM
                 case 1:
                     if (ac[acc].checkPin(Int32.Parse(inputLabel)) == true)
                     {
-                        state = 2;
                         clearScreen();
                         label1.Visible = false;
                         textBox1.Visible = false;
-                        panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("atmMenu.png");
+                        enterStateSecond();
                     }
                     else
                     {
@@ -187,26 +173,116 @@ namespace ATM
             textBox1.AppendText(inputLabel);
         }
 
-        private void btn3_Click(object sender, EventArgs e)
+
+
+
+
+        private void ATM_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void btn1_Click(object sender, EventArgs e)
         {
             switch (state)
             {
                 case 2:
-                    state = 3;
-                    label2.Text = ac[acc].getBalance().ToString();
-                    panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("amountMenu.png");
                     break;
                 case 3:
-                    state = 2;
+                    ac[acc].decrementBalance(5);
+                    enterStateSecond();
                     break;
                 default:
                     break;
             }
         }
 
-        private void ATM_Load(object sender, EventArgs e)
+        private void btn2_Click(object sender, EventArgs e)
         {
+            switch (state)
+            {
+                case 2:
+                    break;
+                case 3:
+                    ac[acc].decrementBalance(50);
+                    enterStateSecond();
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            switch (state)
+            {
+                case 2:
+                    state = 3;
+                    panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("amountMenu.png");
+                    break;
+                case 3:
+                    ac[acc].decrementBalance(10);
+                    enterStateSecond();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            switch(state)
+            {
+                case 2:
+                    state = 3;
+                    panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("amountMenu.png");
+                    break;
+                case 3:
+                    ac[acc].decrementBalance(100);
+                    enterStateSecond();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btn5_Click(object sender, EventArgs e)
+        {
+            switch (state)
+            {
+                case 2:
+                    label2.Text = ac[acc].getBalance().ToString();
+                    break;
+                case 3:
+                    ac[acc].decrementBalance(20);
+                    enterStateSecond();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btn6_Click(object sender, EventArgs e)
+        {
+            switch (state)
+            {
+                case 2:
+                    break;
+                case 3:
+                    otherCashback tempCashWindow = new otherCashback(ac[acc]);
+                    tempCashWindow.ShowDialog();
+                    enterStateSecond();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void enterStateSecond()
+        {
+            state = 2;
+            panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("atmMenu.png");
         }
     }
 }
