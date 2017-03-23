@@ -172,6 +172,9 @@ namespace ATM
             textBox1.AppendText(inputLabel);
             state = 0;
             label1.Text = "ACCOUNT NUMBER:";
+            label1.Visible = true;
+            textBox1.Visible = true;
+            panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("bgImage.jpg");
         }
 
         private void correctionBtn_Click(object sender, EventArgs e)
@@ -191,6 +194,7 @@ namespace ATM
                 case 2:
                     state = 3;
                     label2.Text = ac[acc].getBalance().ToString();
+                    panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("amountMenu.png");
                     break;
                 case 3:
                     state = 2;
