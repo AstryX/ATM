@@ -19,6 +19,7 @@ namespace ATM
         private string inputLabel;
         private int accountAmount;
         public int takenamount;
+        private int displaymode;
         public ATM(Account[] acMain)
         {
             ac = acMain;
@@ -28,6 +29,8 @@ namespace ATM
             inputLabel = "";
             accountAmount = 3;
             takenamount = 0;
+            displaymode = 0;
+            textBox1.ReadOnly = true;
         }
 
         private void np1_Click(object sender, EventArgs e)
@@ -126,6 +129,7 @@ namespace ATM
                             clearScreen();
                             //label1.TextAlign.
                             label1.Text = "INSERT PIN:";
+                            textBox1.PasswordChar = '*';
                             break;
                         }
                     }
@@ -140,11 +144,19 @@ namespace ATM
                     }
                     else
                     {
-                        inputLabel = "Wrong password!";
+                        textBox1.PasswordChar = '\0';
+                        inputLabel = "Wrong password!...";
                         textBox1.Clear();
                         textBox1.AppendText(inputLabel);
+                        System.Threading.Thread.Sleep(2000);
+                        textBox1.Clear();
+                        inputLabel = "";
+                        label1.Text = "ACCOUNT NUMBER:";
                         state = 0;
                     }
+                    break;
+                case 3:
+                    enterStateSecond();
                     break;
                 default:
                     break;
@@ -161,6 +173,7 @@ namespace ATM
             label1.Visible = true;
             textBox1.Visible = true;
             panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("bgImage.jpg");
+            textBox1.PasswordChar = '\0';
         }
 
         private void correctionBtn_Click(object sender, EventArgs e)
@@ -192,6 +205,7 @@ namespace ATM
                     break;
                 case 3:
                     ac[acc].decrementBalance(5);
+                    runMoneyAnimation();
                     enterStateSecond();
                     break;
                 default:
@@ -207,6 +221,7 @@ namespace ATM
                     break;
                 case 3:
                     ac[acc].decrementBalance(50);
+                    runMoneyAnimation();
                     enterStateSecond();
                     break;
                 default:
@@ -224,6 +239,7 @@ namespace ATM
                     break;
                 case 3:
                     ac[acc].decrementBalance(10);
+                    runMoneyAnimation();
                     enterStateSecond();
                     break;
                 default:
@@ -241,6 +257,7 @@ namespace ATM
                     break;
                 case 3:
                     ac[acc].decrementBalance(100);
+                    runMoneyAnimation();
                     enterStateSecond();
                     break;
                 default:
@@ -253,10 +270,15 @@ namespace ATM
             switch (state)
             {
                 case 2:
-                    label2.Text = ac[acc].getBalance().ToString();
+                    cashLabel.Text = ac[acc].getBalance().ToString();
+                    cashLabel.Visible = true;
+                    cashLabel.ForeColor = System.Drawing.Color.White;
+                    amLabel.Visible = true;
+                    panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("basicBg.jpg");
                     break;
                 case 3:
                     ac[acc].decrementBalance(20);
+                    runMoneyAnimation();
                     enterStateSecond();
                     break;
                 default:
@@ -271,9 +293,11 @@ namespace ATM
                 case 2:
                     break;
                 case 3:
-                    otherCashback tempCashWindow = new otherCashback(ac[acc]);
-                    tempCashWindow.ShowDialog();
-                    enterStateSecond();
+                    panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("basicBg.jpg");
+                    textBox1.PasswordChar = '\0';
+                    textBox1.Visible = true;
+                    amountLabel.Visible = true;
+                    runMoneyAnimation();
                     break;
                 default:
                     break;
@@ -283,6 +307,52 @@ namespace ATM
         {
             state = 2;
             panel1.BackgroundImage = System.Drawing.Bitmap.FromFile("atmMenu.png");
+        }
+
+        private void runMoneyAnimation()
+        {
+            
+            BackgroundWorker animator = new BackgroundWorker();
+            animator.DoWork += new DoWorkEventHandler(animator_DoWork);
+            animator.RunWorkerAsync();
+            
+        }
+        private void animator_DoWork(object sender, DoWorkEventArgs e)
+        {
+            String tempstr;
+            if (displaymode == 0)
+            {
+                for (int i = 1; i < 11; i++)
+                {
+                    tempstr = "openATM" + i.ToString() + ".png";
+                    pictureBox1.BackgroundImage = System.Drawing.Bitmap.FromFile(tempstr);
+                    System.Threading.Thread.Sleep(130);
+                }
+                displaymode = 1;
+            }
+            else
+            {
+                for (int i = 6; i > 0; i--)
+                {
+                    tempstr = "openATM" + i.ToString() + ".png";
+                    pictureBox1.BackgroundImage = System.Drawing.Bitmap.FromFile(tempstr);
+                    System.Threading.Thread.Sleep(130);
+                }
+                displaymode = 0;
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (displaymode == 1)
+            {
+                runMoneyAnimation();
+            }
         }
     }
 }

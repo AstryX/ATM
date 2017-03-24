@@ -83,6 +83,16 @@ namespace ATM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _11 {
+            get {
+                object obj = ResourceManager.GetObject("11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _2 {
             get {
                 object obj = ResourceManager.GetObject("2", resourceCulture);
@@ -173,26 +183,6 @@ namespace ATM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap b3496dbae55d5199b0a2e10edf3e26d8 {
-            get {
-                object obj = ResourceManager.GetObject("b3496dbae55d5199b0a2e10edf3e26d8", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bgImage {
-            get {
-                object obj = ResourceManager.GetObject("bgImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bgImg {
             get {
                 object obj = ResourceManager.GetObject("bgImg", resourceCulture);
@@ -216,6 +206,36 @@ namespace ATM.Properties {
         internal static System.Drawing.Bitmap correction {
             get {
                 object obj = ResourceManager.GetObject("correction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap keyPad {
+            get {
+                object obj = ResourceManager.GetObject("keyPad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap keyPad1 {
+            get {
+                object obj = ResourceManager.GetObject("keyPad1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kPad {
+            get {
+                object obj = ResourceManager.GetObject("kPad", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

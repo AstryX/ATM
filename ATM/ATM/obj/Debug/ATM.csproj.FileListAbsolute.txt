@@ -30,3 +30,4 @@ C:\Users\rdereskevicius\Desktop\ATMBACKUP\ATM\ATM\ATM\obj\Debug\ATM.Properties.R
 C:\Users\rdereskevicius\Desktop\ATMBACKUP\ATM\ATM\ATM\obj\Debug\ATM.csproj.GenerateResource.Cache
 C:\Users\andreidombrovschi\Desktop\ATM\ATM\ATM\obj\Debug\ATM.ATM.resources
 C:\Users\rdereskevicius\Desktop\ATM\ATM\ATM\obj\Debug\ATM.otherCashback.resources
+C:\Users\andreidombrovschi\Desktop\ATM\ATM\ATM\obj\Debug\ATM.otherCashback.resources
