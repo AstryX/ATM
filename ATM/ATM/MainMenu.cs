@@ -13,14 +13,15 @@ namespace ATM
     public partial class MainMenu : Form
     {
         private int testingstate;
-        private ATM tempatm;
         private Account[] ac = new Account[4];
         ATM test;
         ATM test2;
         private Thread tester1, tester2;
+        public static Semaphore protection;
         public MainMenu()
         {
             InitializeComponent();
+            protection = new Semaphore(1,1);
             ac[1] = new Account(300, 1111, 111111);
             ac[2] = new Account(750, 2222, 222222);
             ac[3] = new Account(3000, 3333, 333333);
@@ -66,8 +67,6 @@ namespace ATM
             ThreadStart workracing2 = new ThreadStart(workThread2);
             tester2 = new Thread(workracing2);
             tester2.Start();
-            test.setOtherThread(tester2);
-            test2.setOtherThread(tester1);
             string text = "---> TWO ATMS OPENED FOR TESTING";
             mainBox.AppendText(text);
             mainBox.AppendText(Environment.NewLine);
@@ -81,6 +80,24 @@ namespace ATM
         private void workThread2()
         {
             test2.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            testingstate = 2;
+            test = new ATM(ac, testingstate, this);
+            test2 = new ATM(ac, testingstate, this);
+            test.setOtherATM(test2);
+            test2.setOtherATM(test);
+            ThreadStart workracing1 = new ThreadStart(workThread);
+            tester1 = new Thread(workracing1);
+            tester1.Start();
+            ThreadStart workracing2 = new ThreadStart(workThread2);
+            tester2 = new Thread(workracing2);
+            tester2.Start();
+            string text = "---> TWO ATMS OPENED FOR TESTING";
+            mainBox.AppendText(text);
+            mainBox.AppendText(Environment.NewLine);
         }
     }
     public class Account
