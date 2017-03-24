@@ -17,6 +17,7 @@ namespace ATM
         private Account[] ac = new Account[3];
         ATM test;
         ATM test2;
+        ATM log;
         private Thread tester1, tester2;
         public MainMenu()
         {
@@ -24,6 +25,8 @@ namespace ATM
             ac[0] = new Account(300, 1111, 111111);
             ac[1] = new Account(750, 2222, 222222);
             ac[2] = new Account(3000, 3333, 333333);
+            mainBox.ReadOnly = true;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,6 +36,9 @@ namespace ATM
             ThreadStart work = new ThreadStart(workThread);
             Thread runwork = new Thread(work);
             runwork.Start();
+            string text = "---> ATM WAS OPENED";
+            mainBox.AppendText(text);
+            mainBox.AppendText(Environment.NewLine);
             
         }
 
@@ -51,6 +57,9 @@ namespace ATM
             tester2.Start();
             test.setOtherThread(tester2);
             test2.setOtherThread(tester1);
+            string text = "--->TWO ATMS OPENED FOR TESTING";
+            mainBox.AppendText(text);
+            mainBox.AppendText(Environment.NewLine);
         }
 
         private void workThread()

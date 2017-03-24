@@ -14,6 +14,7 @@ namespace ATM
     public partial class ATM : Form
     {
         private Account[] ac;
+        private MainMenu logFile = new MainMenu();
         private int state;
         private int acc;
         private string inputLabel;
@@ -151,12 +152,12 @@ namespace ATM
                     for (int i = 0; i < accountAmount; i++)
                     {
                         tempacc = ac[i].getAccountNum().ToString();
+                        Console.Write(tempacc);
                         if (inputLabel == tempacc)
                         {
                             state = 1;
                             acc = i;
                             clearScreen();
-
                             label1.Text = "INSERT PIN:";
                             textBox1.PasswordChar = '*';
                             break;
@@ -175,6 +176,9 @@ namespace ATM
                     if (ac[acc].checkPin(Int32.Parse(inputLabel)) == true)//crashes when pin is empty
                     {
                         clearScreen();
+                        string text = "Account " + acc + " has logged in";
+                        Console.WriteLine(text);
+                        logFile.mainBox.AppendText(text + Environment.NewLine);
                         label1.Visible = false;
                         textBox1.Visible = false;
                         textBox1.PasswordChar = '\0';
