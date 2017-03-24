@@ -13,29 +13,29 @@ namespace ATM
     public partial class MainMenu : Form
     {
         private int testingstate;
-        private Account[] ac = new Account[4];
+        private Account[] ac = new Account[4];//Storing accounts in an array
         ATM test;
         ATM test2;
         private Thread tester1, tester2;
-        public static Semaphore protection;
+        public static Semaphore protection;//Semaphore storage
         public MainMenu()
         {
             InitializeComponent();
-            protection = new Semaphore(1,1);
+            protection = new Semaphore(1,1);//Semaphore is determined to only hold 1 Thread at a time in the specified space
             ac[1] = new Account(300, 1111, 111111);
             ac[2] = new Account(750, 2222, 222222);
             ac[3] = new Account(3000, 3333, 333333);
             mainBox.ReadOnly = true;
 
         }
-
+        //Creates a single thread for an ATM to be used
         private void button1_Click(object sender, EventArgs e)
         {
             testingstate = 0;
-            test = new ATM(ac, testingstate, this);
+            test = new ATM(ac, testingstate, this);//Calls the constructor to fill in ATM object
             ThreadStart work = new ThreadStart(workThread);
             Thread runwork = new Thread(work);
-            runwork.Start();
+            runwork.Start();//Runs the thread for a new instance of ATM
             string text = "---> ATM WAS OPENED";
             mainBox.AppendText(text);
             mainBox.AppendText(Environment.NewLine);
@@ -53,7 +53,7 @@ namespace ATM
 
             }
         }
-
+        //Data racing without semaphores
         private void button2_Click(object sender, EventArgs e)
         {
             testingstate = 1;
@@ -81,7 +81,7 @@ namespace ATM
         {
             test2.ShowDialog();
         }
-
+        //Activated to enable data racing with semaphores
         private void button3_Click(object sender, EventArgs e)
         {
             testingstate = 2;
@@ -123,28 +123,6 @@ namespace ATM
         public void setBalance(int newBalance)
         {
             this.balance = newBalance;
-        }
-
-        /*
-         *   This funciton allows us to decrement the balance of an account
-         *   it perfomes a simple check to ensure the balance is greater tha
-         *   the amount being debeted
-         *   
-         *   reurns:
-         *   true if the transactions if possible
-         *   false if there are insufficent funds in the account
-         */
-        public Boolean decrementBalance(int amount)
-        {
-            if (this.balance > amount)
-            {
-                balance -= amount;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         public Boolean checkPin(int pinEntered)

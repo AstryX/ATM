@@ -30,4 +30,13 @@ C:\Users\rdereskevicius\Desktop\ATMBACKUP\ATM\ATM\ATM\obj\Debug\ATM.Properties.R
 C:\Users\rdereskevicius\Desktop\ATMBACKUP\ATM\ATM\ATM\obj\Debug\ATM.csproj.GenerateResource.Cache
 C:\Users\andreidombrovschi\Desktop\ATM\ATM\ATM\obj\Debug\ATM.ATM.resources
 C:\Users\rdereskevicius\Desktop\ATM\ATM\ATM\obj\Debug\ATM.otherCashback.resources
-C:\Users\andreidombrovschi\Desktop\ATM\ATM\ATM\obj\Debug\ATM.otherCashback.resources
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\bin\Debug\ATM.exe.config
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\bin\Debug\ATM.exe
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\bin\Debug\ATM.pdb
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\obj\Debug\ATM.csprojResolveAssemblyReference.cache
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\obj\Debug\ATM.ATM.resources
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\obj\Debug\ATM.MainMenu.resources
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\obj\Debug\ATM.Properties.Resources.resources
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\obj\Debug\ATM.csproj.GenerateResource.Cache
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\obj\Debug\ATM.exe
+C:\Users\andreidombrovschi\Desktop\Team_22\ATM\ATM\ATM\obj\Debug\ATM.pdb
