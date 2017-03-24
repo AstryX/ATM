@@ -31,8 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ATM));
             this.cashLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.yLabel = new System.Windows.Forms.Label();
+            this.nLabel = new System.Windows.Forms.Label();
             this.amountLabel = new System.Windows.Forms.Label();
-            this.otherTxtBox = new System.Windows.Forms.TextBox();
             this.amLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -57,6 +58,7 @@
             this.btn1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.questionLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -78,8 +80,10 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.Controls.Add(this.questionLabel);
+            this.panel1.Controls.Add(this.yLabel);
+            this.panel1.Controls.Add(this.nLabel);
             this.panel1.Controls.Add(this.amountLabel);
-            this.panel1.Controls.Add(this.otherTxtBox);
             this.panel1.Controls.Add(this.amLabel);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cashLabel);
@@ -89,29 +93,41 @@
             this.panel1.Size = new System.Drawing.Size(400, 300);
             this.panel1.TabIndex = 23;
             // 
+            // yLabel
+            // 
+            this.yLabel.AutoSize = true;
+            this.yLabel.Font = new System.Drawing.Font("Stencil", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yLabel.ForeColor = System.Drawing.Color.White;
+            this.yLabel.Location = new System.Drawing.Point(3, 253);
+            this.yLabel.Name = "yLabel";
+            this.yLabel.Size = new System.Drawing.Size(93, 32);
+            this.yLabel.TabIndex = 27;
+            this.yLabel.Text = "<- Yes";
+            this.yLabel.Visible = false;
+            // 
+            // nLabel
+            // 
+            this.nLabel.AutoSize = true;
+            this.nLabel.Font = new System.Drawing.Font("Stencil", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nLabel.ForeColor = System.Drawing.Color.White;
+            this.nLabel.Location = new System.Drawing.Point(320, 253);
+            this.nLabel.Name = "nLabel";
+            this.nLabel.Size = new System.Drawing.Size(80, 32);
+            this.nLabel.TabIndex = 27;
+            this.nLabel.Text = "No ->";
+            this.nLabel.Visible = false;
+            // 
             // amountLabel
             // 
             this.amountLabel.AutoSize = true;
             this.amountLabel.Font = new System.Drawing.Font("Stencil", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.amountLabel.ForeColor = System.Drawing.Color.White;
-            this.amountLabel.Location = new System.Drawing.Point(15, 40);
+            this.amountLabel.Location = new System.Drawing.Point(26, 34);
             this.amountLabel.Name = "amountLabel";
             this.amountLabel.Size = new System.Drawing.Size(371, 25);
             this.amountLabel.TabIndex = 26;
             this.amountLabel.Text = "Enter amount and click enter";
             this.amountLabel.Visible = false;
-            // 
-            // otherTxtBox
-            // 
-            this.otherTxtBox.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.otherTxtBox.Font = new System.Drawing.Font("Perpetua Titling MT", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherTxtBox.Location = new System.Drawing.Point(46, 88);
-            this.otherTxtBox.Multiline = true;
-            this.otherTxtBox.Name = "otherTxtBox";
-            this.otherTxtBox.Size = new System.Drawing.Size(300, 42);
-            this.otherTxtBox.TabIndex = 26;
-            this.otherTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.otherTxtBox.Visible = false;
             // 
             // amLabel
             // 
@@ -417,6 +433,18 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // questionLabel
+            // 
+            this.questionLabel.AutoSize = true;
+            this.questionLabel.Font = new System.Drawing.Font("Stencil", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.questionLabel.ForeColor = System.Drawing.Color.White;
+            this.questionLabel.Location = new System.Drawing.Point(42, 180);
+            this.questionLabel.Name = "questionLabel";
+            this.questionLabel.Size = new System.Drawing.Size(314, 25);
+            this.questionLabel.TabIndex = 27;
+            this.questionLabel.Text = "Do you want to continue?";
+            this.questionLabel.Visible = false;
+            // 
             // ATM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,9 +501,11 @@
         private System.Windows.Forms.Label cashLabel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label amLabel;
-        private System.Windows.Forms.TextBox otherTxtBox;
         private System.Windows.Forms.Label amountLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label yLabel;
+        private System.Windows.Forms.Label nLabel;
+        private System.Windows.Forms.Label questionLabel;
 	}
 }
 

@@ -12,7 +12,12 @@ namespace ATM
 {
     public partial class MainMenu : Form
     {
+        private int testingstate;
+        private ATM tempatm;
         private Account[] ac = new Account[3];
+        ATM test;
+        ATM test2;
+        private Thread tester1, tester2;
         public MainMenu()
         {
             InitializeComponent();
@@ -23,15 +28,39 @@ namespace ATM
 
         private void button1_Click(object sender, EventArgs e)
         {
+            testingstate = 0;
+            test = new ATM(ac, testingstate);
             ThreadStart work = new ThreadStart(workThread);
-            Thread test = new Thread(work);
-            test.Start();
+            Thread runwork = new Thread(work);
+            runwork.Start();
             
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            testingstate = 1;
+            test = new ATM(ac, testingstate);
+            test2 = new ATM(ac, testingstate);
+            test.setOtherATM(test2);
+            test2.setOtherATM(test);
+            ThreadStart workracing1 = new ThreadStart(workThread);
+            tester1 = new Thread(workracing1);
+            tester1.Start();
+            ThreadStart workracing2 = new ThreadStart(workThread2);
+            tester2 = new Thread(workracing2);
+            tester2.Start();
+            test.setOtherThread(tester2);
+            test2.setOtherThread(tester1);
+        }
+
         private void workThread()
         {
-            ATM test = new ATM(ac);
             test.ShowDialog();
+        }
+
+        private void workThread2()
+        {
+            test2.ShowDialog();
         }
     }
     public class Account
