@@ -28,19 +28,21 @@ namespace ATM
         private Boolean releaseRace;
         private Boolean wasInterrupted;
         private BackgroundWorker testbg;
+        private MainMenu system;
         private static readonly Object obj = new Object();
         Thread otherThread;
-        public ATM(Account[] acMain, int index)
+        public ATM(Account[] acMain, int index, MainMenu menu)
         {
             protection = new Semaphore(1, 1);
             racingindex = index;
+            system = menu;
             ac = acMain;
             InitializeComponent();
             state = 0;
             acc = -1;
             wasInterrupted = false;
             inputLabel = "";
-            accountAmount = 3;
+            accountAmount = 4;
             takenamount = 0;
             isRacing = false;
             displaymode = 0;
@@ -149,10 +151,10 @@ namespace ATM
             {
                 case 0:
                     string tempacc;
-                    for (int i = 0; i < accountAmount; i++)
+                    for (int i = 1; i < accountAmount; i++)
                     {
                         tempacc = ac[i].getAccountNum().ToString();
-                        Console.Write(tempacc);
+                        Console.WriteLine(tempacc);
                         if (inputLabel == tempacc)
                         {
                             state = 1;
@@ -162,7 +164,7 @@ namespace ATM
                             textBox1.PasswordChar = '*';
                             break;
                         }
-                        else 
+                        else if(i==accountAmount-1)
                         {
                             inputLabel = "NO ACCOUNT FOUND";
                             textBox1.Clear();
@@ -176,9 +178,8 @@ namespace ATM
                     if (ac[acc].checkPin(Int32.Parse(inputLabel)) == true)//crashes when pin is empty
                     {
                         clearScreen();
-                        string text = "Account " + acc + " has logged in";
-                        Console.WriteLine(text);
-                        logFile.mainBox.AppendText(text + Environment.NewLine);
+                        string account = "---> Account " + acc + " has logged in\r\n";
+                        system.updateLog(account);
                         label1.Visible = false;
                         textBox1.Visible = false;
                         textBox1.PasswordChar = '\0';
@@ -198,36 +199,51 @@ namespace ATM
                     }
                     break;
                 case 3:
-                    int amount = Int32.Parse(textBox1.Text);
-                    int tempalance = ac[acc].getBalance();
-                    if (amount % 5 != 0)
+                    if (textBox1.Text == null || textBox1.Text=="")
                     {
-                        inputLabel = "Invalid amount...";
+                        inputLabel = "Invalid value!";
                         textBox1.Clear();
                         textBox1.AppendText(inputLabel);
                         System.Threading.Thread.Sleep(2000);
+                        state = 0;
                         firstScreen();
 
                     }
-                    else if (tempalance < amount) 
-                    {
-                        inputLabel = "Insufficient funds...";
-                        textBox1.Clear();
-                        textBox1.AppendText(inputLabel);
-                        System.Threading.Thread.Sleep(2000);
-                        firstScreen(); 
-                    }
                     else
                     {
-                        int tempbalance = ac[acc].getBalance();
-                        if (racingindex == 1) loopUntilActive();
-                        tempbalance = tempbalance - amount;
-                        ac[acc].setBalance(tempbalance);
-                        runMoneyAnimation();
-                        enterStateSecond();
-                        amountLabel.Visible = false;
-                        textBox1.Visible = false;
-                        inputLabel = "";
+                        int amount = Int32.Parse(textBox1.Text);
+                        int tempalance = ac[acc].getBalance();
+                        if (amount % 5 != 0)
+                        {
+                            inputLabel = "Invalid amount...";
+                            textBox1.Clear();
+                            textBox1.AppendText(inputLabel);
+                            System.Threading.Thread.Sleep(2000);
+                            firstScreen();
+
+                        }
+                        else if (tempalance < amount)
+                        {
+                            inputLabel = "Insufficient funds...";
+                            textBox1.Clear();
+                            textBox1.AppendText(inputLabel);
+                            System.Threading.Thread.Sleep(2000);
+                            firstScreen();
+                        }
+                        else
+                        {
+                            int tempbalance = ac[acc].getBalance();
+                            if (racingindex == 1) loopUntilActive();
+                            tempbalance = tempbalance - amount;
+                            ac[acc].setBalance(tempbalance);
+                            string account = "---> Amount " + amount + " has been withdrawn\r\n";
+                            system.updateLog(account);
+                            runMoneyAnimation();
+                            enterStateSecond();
+                            amountLabel.Visible = false;
+                            textBox1.Visible = false;
+                            inputLabel = "";
+                        }
                     }
                     break;
                 default:
@@ -294,7 +310,8 @@ namespace ATM
                         {
                             tempbalance = tempbalance - 5;
                             ac[acc].setBalance(tempbalance);
-
+                            string account = "---> Amount " + 5 + " has been withdrawn\r\n";
+                            system.updateLog(account);
                             //ac[acc].decrementBalance(5);
                             //wasInterrupted = false;
                             runMoneyAnimation();
@@ -327,30 +344,42 @@ namespace ATM
 
         private void loopUntilActive()
         {
-           /* int tempbalance;
+            int tempbalance = 0;
             isRacing = true;
             if (otherATM.getIsRacing() == true) otherThread.Interrupt();
             //protection.WaitOne();
-            
+
             try
             {
-                protection.WaitOne();
-                tempbalance = ac[acc].getBalance();
+                
                 System.Threading.Thread.Sleep(9999999);
                 
-                tempbalance = tempbalance - 5;
-                ac[acc].setBalance(tempbalance);
-                protection.Release();
+              
+                
+                
 
             }
             catch (ThreadInterruptedException ex)
             {
-                isRacing = false;
+                System.Threading.Thread.Sleep(1000);
                 otherThread.Interrupt();
+                //protection.WaitOne();
+                tempbalance = ac[acc].getBalance();
                 
+                System.Threading.Thread.Sleep(2000);
+                Console.WriteLine(this.Text);
+                tempbalance = tempbalance - 5;
+                ac[acc].setBalance(tempbalance);
                 //protection.Release();
+                isRacing = false;
                 
+
+
+                //protection.Release();
+
             }
+            runMoneyAnimation();
+            enterStateSecond();
             /*for (; ; )
             {
                 if (isRacing == true && otherATM.getIsRacing() == true)
@@ -364,45 +393,6 @@ namespace ATM
                 }
             }
             isRacing = false;*/
-
-            
-            testbg = new BackgroundWorker();
-            
-            testbg.WorkerSupportsCancellation = true;
-            testbg.WorkerReportsProgress = true;
-            testbg.DoWork += new DoWorkEventHandler(testbg_DoWork);
-            testbg.RunWorkerAsync();
-            testbg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(testbg_RunWorkerCompleted);
-            
-
-
-           
-            
-        }
-
-        private void testbg_RunWorkerCompleted(object snder, RunWorkerCompletedEventArgs e)
-        {
-            runMoneyAnimation();
-            enterStateSecond();
-        }
-
-        void testbg_DoWork(object sender, DoWorkEventArgs e){
-            int tempbalance;
-            if (otherATM.getIsRacing() == true) otherATM.setWasInterrupted(true);
-            for (; ; )
-            {
-                //protection.WaitOne();
-
-                tempbalance = ac[acc].getBalance();
-                if (wasInterrupted == true)
-                {
-                    otherATM.setWasInterrupted(true);
-                    break;
-                }
-                //protection.Release();
-            }
-            tempbalance = tempbalance - 5;
-            ac[acc].setBalance(tempbalance);
 
         }
 
@@ -423,6 +413,8 @@ namespace ATM
                     {
                         tempbalance = tempbalance - 50;
                         ac[acc].setBalance(tempbalance);
+                        string account = "---> Amount " + 50 + " has been withdrawn\r\n";
+                        system.updateLog(account);
                         runMoneyAnimation();
                         enterStateSecond();
                     }
@@ -464,6 +456,8 @@ namespace ATM
                     {
                         tempbalance = tempbalance - 10;
                         ac[acc].setBalance(tempbalance);
+                        string account = "---> Amount " + 10 + " has been withdrawn\r\n";
+                        system.updateLog(account);
                         runMoneyAnimation();
                         enterStateSecond();
                     }
@@ -492,6 +486,8 @@ namespace ATM
                     {
                         tempbalance = tempbalance - 100;
                         ac[acc].setBalance(tempbalance);
+                        string account = "---> Amount " + 100 + " has been withdrawn\r\n";
+                        system.updateLog(account);
                         runMoneyAnimation();
                         enterStateSecond();
                     }
@@ -526,6 +522,8 @@ namespace ATM
                     nLabel.Visible = true;
                     questionLabel.Visible = true;
                     state = 5;//state for checking money left
+                    string account = "---> £" + ac[acc].getBalance().ToString() + " left in the account\r\n";
+                    system.updateLog(account);
                     break;
                 case 3:
                     int tempbalance = ac[acc].getBalance();
@@ -538,6 +536,8 @@ namespace ATM
                     {
                         tempbalance = tempbalance - 20;
                         ac[acc].setBalance(tempbalance);
+                        string accountt = "---> Amount " + 20 + " has been withdrawn\r\n";
+                        system.updateLog(accountt);
                         runMoneyAnimation();
                         enterStateSecond();
                     }

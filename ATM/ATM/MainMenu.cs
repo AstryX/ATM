@@ -14,17 +14,16 @@ namespace ATM
     {
         private int testingstate;
         private ATM tempatm;
-        private Account[] ac = new Account[3];
+        private Account[] ac = new Account[4];
         ATM test;
         ATM test2;
-        ATM log;
         private Thread tester1, tester2;
         public MainMenu()
         {
             InitializeComponent();
-            ac[0] = new Account(300, 1111, 111111);
-            ac[1] = new Account(750, 2222, 222222);
-            ac[2] = new Account(3000, 3333, 333333);
+            ac[1] = new Account(300, 1111, 111111);
+            ac[2] = new Account(750, 2222, 222222);
+            ac[3] = new Account(3000, 3333, 333333);
             mainBox.ReadOnly = true;
 
         }
@@ -32,7 +31,7 @@ namespace ATM
         private void button1_Click(object sender, EventArgs e)
         {
             testingstate = 0;
-            test = new ATM(ac, testingstate);
+            test = new ATM(ac, testingstate, this);
             ThreadStart work = new ThreadStart(workThread);
             Thread runwork = new Thread(work);
             runwork.Start();
@@ -42,11 +41,23 @@ namespace ATM
             
         }
 
+        public void updateLog(String message) 
+        {
+            try
+            {
+                mainBox.Invoke(new Action(() => mainBox.AppendText(message)));
+            }
+            catch (Exception eee)
+            {
+
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             testingstate = 1;
-            test = new ATM(ac, testingstate);
-            test2 = new ATM(ac, testingstate);
+            test = new ATM(ac, testingstate, this);
+            test2 = new ATM(ac, testingstate, this);
             test.setOtherATM(test2);
             test2.setOtherATM(test);
             ThreadStart workracing1 = new ThreadStart(workThread);
@@ -57,7 +68,7 @@ namespace ATM
             tester2.Start();
             test.setOtherThread(tester2);
             test2.setOtherThread(tester1);
-            string text = "--->TWO ATMS OPENED FOR TESTING";
+            string text = "---> TWO ATMS OPENED FOR TESTING";
             mainBox.AppendText(text);
             mainBox.AppendText(Environment.NewLine);
         }
